@@ -4,7 +4,7 @@ import {Navbar , Nav} from "react-bootstrap";
 export default function MainNav() {
 	return(
 		<Navbar bg="light" expand="md">
-		  <Navbar.Brand as={Link} to="#home">React-Bootstrap</Navbar.Brand>
+		  <Navbar.Brand as={Link} to="">Pints & Cones</Navbar.Brand>
 		  <Navbar.Toggle aria-controls="basic-navbar-nav" />
 		  <Navbar.Collapse id="basic-navbar-nav">
 		    <Nav className="mr-auto">
