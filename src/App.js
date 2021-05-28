@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
+import ApplicationProvider from "./contexts/ApplicationContext"
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,6 +14,7 @@ import {
 function App() {
   return (
     <div className="App">
+      <ApplicationProvider>
         <Router>
           <MainNav />
 
@@ -29,6 +31,7 @@ function App() {
             <Route path="*" component={Page404} />
           </Switch>  
         </Router>
+      </ApplicationProvider>
     </div>
   );
 }
