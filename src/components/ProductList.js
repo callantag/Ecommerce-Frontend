@@ -8,7 +8,7 @@ export default function ProductList() {
 	const productDisplay = products.map(product => {
 		return (
 			<Col xs={12} sm={6} md={4} lg={3} key={product._id}>
-  				<ProductListItem product={product}/>
+  				<ProductListItem product={product} viewBtn={true} />
   			</Col>
 		)
 	})

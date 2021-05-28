@@ -3,6 +3,7 @@ import MainNav from "./components/MainNav";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ProductSingle from "./pages/ProductSingle";
 import Page404 from "./pages/Page404";
 import ApplicationProvider from "./contexts/ApplicationContext"
 import {
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/products/:id">
+              <ProductSingle />
             </Route>
             <Route path="*" component={Page404} />
           </Switch>  
