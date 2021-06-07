@@ -1,16 +1,14 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import MainNav from "./components/MainNav";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import ProductSingle from "./pages/ProductSingle";
-import Page404 from "./pages/Page404";
-import ApplicationProvider from "./contexts/ApplicationContext"
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-  } from "react-router-dom";
+import ProductCreate from "./pages/ProductCreate";
+import AdminRoutes from "./components/AdminRoutes";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ApplicationProvider from "./contexts/ApplicationContext";
 
 function App() {
   return (
@@ -23,17 +21,18 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/register">
-              <Register />
-            </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/products/:id">
               <ProductSingle />
             </Route>
-            <Route path="*" component={Page404} />
-          </Switch>  
+
+            <AdminRoutes path="/create/products" component={ProductCreate} />
+          </Switch>
         </Router>
       </ApplicationProvider>
     </div>

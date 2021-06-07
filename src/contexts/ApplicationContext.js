@@ -1,49 +1,52 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 
-export const ApplicationContext = createContext()
+export const ApplicationContext = createContext();
 
 export default function ApplicationProvider(props) {
+	const [user, setUser] = useState({
+		userId: "",
+		isAdmin: false,
+		email: "",
+		firstName: "",
+		lastName: "",
+	});
 
-	const [products, setProducts] = useState([])
+	// Fetch
+	//useEffect(<function to run>, <array of state that you are watching>)
 
-	//Fetch
-	// useEffect(<function to run>, <array of state you are watching>)
 	useEffect(() => {
-		fetch("http://localhost:4000/api/products")
-		.then(res=> res.json())
-		.then(data=>{
-			setProducts(data)
+		fetch("http://localhost:4000/api/users", {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
 		})
-		.catch(err=>console.log(err))
-	})
+			.then((res) => res.json())
+			.then((data) => {
+				// console.log(data)
+				let { firstName, lastName, isAdmin, email } = data;
+				setUser({
+					userId: data._id,
+					firstName,
+					lastName,
+					email,
+					isAdmin,
+				});
+			})
+			.catch((err) => console.log(err));
+	}, []);
+
+	// useEffect( ()=>{
+	// 	console.log("This will run if products state changes")
+	// },[products])
 
 	return (
 		<ApplicationContext.Provider
-			value={{products}}
+			value={{
+				setUser,
+				user,
+			}}
 		>
 			{props.children}
 		</ApplicationContext.Provider>
-	)
+	);
 }
-
-
-
-
-
-// const products = [
-	// 	{
-	// 		_id: 1,
-	// 		name: "Brand X",
-	// 		description: "descX"
-	// 	},
-	// 	{
-	// 		_id: 2,
-	// 		name: "Brand Y",
-	// 		description: "descY"
-	// 	},
-	// 	{
-	// 		_id: 3,
-	// 		name: "Brand Z",
-	// 		description: "descZ"
-	// 	}
-	// ]
